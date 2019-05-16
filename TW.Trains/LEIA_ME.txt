@@ -1,0 +1,14 @@
+﻿1 - Exceucao do código
+
+O projeto foi criado usando o SDK Microsoft.NETCore.App (2.1.0), portanto é preciso ter esse framework instalado.
+A solucao é um arquivo da IDE Visual Studio for Mac, porém pode ser aberto no windows desde que use o Visual Studio 2018 ou 2019
+
+Ao deve se digitar os cenários de testes conforme descridot no e-mail do teste (AB5, AC7, BC4)
+
+2 - Arquitetura
+
+A arquitetura usada tentou seguir os principios DDD ao usar uma modelagem que desacopla a complexidade da implementacao no Domain.
+Foi usado Frabic Pattern com interfaces que a implementacao nao crie dependencias em outras camadas como testes e UI.
+Dessa forma a aplicacao pode evoluir, por exemplo melhorando a modelagem dos grafos diminuindo o Inbox de conversao para double e Hashtable, 
+    usando encapsulamento também para obter os nós de forma mais prática.
+Foram implementados testes que garantem que o código pode ser melhorado sem afetar o resultado das funcionalidades.

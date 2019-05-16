@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A6D29F48-CA04-4014-A3FD-F4A9E942226A}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TW.Trains.Domain</RootNamespace>
+    <AssemblyName>TW.Trains.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Ferrovia.cs" />
+    <Compile Include="Services\CalculadoraDistancias.cs" />
+    <Compile Include="Services\CalculadoraMenoresDistancias.cs" />
+    <Compile Include="Services\CalculadoraQuantidadeRotasBase.cs" />
+    <Compile Include="Services\CalculadoraQuantidadeRotasComNumeroMaximo.cs" />
+    <Compile Include="Services\CalculadoraQuantidadeRotasComNumeroExato.cs" />
+    <Compile Include="Services\CalculadoraQuantidadeRotasComDistanciaMaxima.cs" />
+    <Compile Include="Utils\MensagensUtil.cs" />
+    <Compile Include="Services\ICalculadoraQuantidadeRotas.cs" />
+    <Compile Include="Services\ICalculadoraMenoresDistancias.cs" />
+    <Compile Include="Services\ICalculadoraDistancias.cs" />
+    <Compile Include="Frabrics\FabricaCalculadoraDistancia.cs" />
+    <Compile Include="Frabrics\FabricaCalculadoraMenoresDistancias.cs" />
+    <Compile Include="Frabrics\FabricaCalculadoraQuantidadeRotas.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Frabrics\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.Extensions">
+      <HintPath>..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>
