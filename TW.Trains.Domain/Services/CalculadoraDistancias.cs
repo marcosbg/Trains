@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using TW.Trains.Domain.Models;
+﻿using TW.Trains.Domain.Models;
 using TW.Trains.Domain.Utils;
 
 namespace TW.Trains.Domain.Services
@@ -25,13 +23,13 @@ namespace TW.Trains.Domain.Services
             // Percorre-se todas as cidades verificando se a proxima cidade está conectada, em caso negativo encerra a busca
             for (int i = 0; i < cidades.Length - 1; i++)
             {
-                var origem = (Hashtable)ferrovia.Rotas[cidades[i]];
+                var origem = ferrovia.Rotas[cidades[i]];
                 var proximoDestino = cidades[i + 1];
 
                 if (origem.ContainsKey(proximoDestino))
                 {
                     var distanciaParaProximoDestino = origem[proximoDestino];
-                    distanciaTotal += (double)distanciaParaProximoDestino;
+                    distanciaTotal += distanciaParaProximoDestino;
                 }
                 else
                     return MensagensUtil.MensagemRotaNaoExiste;

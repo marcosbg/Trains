@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TW.Trains.Domain.Models;
 using TW.Trains.Domain.Utils;
 
@@ -26,8 +24,8 @@ namespace TW.Trains.Domain.Services
                 return MensagensUtil.MensagemRotaNaoExiste;
 
             // Limpa-se as varias veis usadas para calcular a rota
-            var distancias = new Hashtable();
-            var pais = new Hashtable();
+            var distancias = new Dictionary<string, double>();
+            var pais = new Dictionary<string, string>();
             cidadesProcessadas = new List<string>();
 
             // Cria as estruturas auxiliares de chave e valor com as cidades do grafo
@@ -38,9 +36,9 @@ namespace TW.Trains.Domain.Services
             }
 
             // Populando os valores conhecidos de distancia e hieraquia das rotas
-            foreach (string c in (ferrovia.Rotas[cidadeOrigem] as Hashtable).Keys)
+            foreach (string c in ferrovia.Rotas[cidadeOrigem].Keys)
             {
-                distancias[c] = (double)(ferrovia.Rotas[cidadeOrigem] as Hashtable)[c];
+                distancias[c] = ferrovia.Rotas[cidadeOrigem][c];
                 pais[c] = cidadeOrigem;
             }
 
@@ -49,15 +47,15 @@ namespace TW.Trains.Domain.Services
 
             while (cidade != null)
             {
-                var distancia = (double)distancias[cidade];
+                var distancia = distancias[cidade];
 
                 // Verifica nas cidades proximas se é possível chegar em uma cidade mais de forma mais rápida
-                var cidadesProximas = ferrovia.Rotas[cidade] as Hashtable;
+                var cidadesProximas = ferrovia.Rotas[cidade];
                 foreach (string c in cidadesProximas.Keys)
                 {
-                    var novaDistancia = distancia + (double)cidadesProximas[c];
+                    var novaDistancia = distancia + cidadesProximas[c];
 
-                    if ((double)distancias[c] > novaDistancia)
+                    if (distancias[c] > novaDistancia)
                     {
                         distancias[c] = novaDistancia;
                         pais[c] = cidade;
@@ -74,7 +72,7 @@ namespace TW.Trains.Domain.Services
         }
 
         // Met0do auxiliar para buscar a cidade com menor distancia para completar a rota
-        private string AcharCidadeMaisProxima(Hashtable distancias)
+        private string AcharCidadeMaisProxima(Dictionary<string, double> distancias)
         {
             double menorDistancia = double.PositiveInfinity;
             string cidadeMenorDistancia = null;
@@ -82,7 +80,7 @@ namespace TW.Trains.Domain.Services
             // Para cada distancia mapeada verifica a cidade já foi processada e se a distancia é a menor que se pode escolher
             foreach (string cidade in distancias.Keys)
             {
-                var distancia = (double)distancias[cidade];
+                var distancia = distancias[cidade];
 
                 if (distancia < menorDistancia && !cidadesProcessadas.Contains(cidade))
                 {

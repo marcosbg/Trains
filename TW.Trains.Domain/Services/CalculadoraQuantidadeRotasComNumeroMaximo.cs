@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using TW.Trains.Domain.Models;
+﻿using TW.Trains.Domain.Models;
 
 namespace TW.Trains.Domain.Services
 {
@@ -13,7 +11,7 @@ namespace TW.Trains.Domain.Services
         protected override void QuantidadeParadasComReferencia(string cidadeOrigem, string cidadeDestino, double numeroAtual, double numeroReferencia)
         {
             // Busca nas cidades proximas a atual e verifica se chegou nos destino e a quantidade de paradas nao ultrapassou o limite
-            foreach (string cidadeBusca in (Ferrovia.Rotas[cidadeOrigem] as Hashtable).Keys)
+            foreach (string cidadeBusca in Ferrovia.Rotas[cidadeOrigem].Keys)
             {
                 var qtdParadas = numeroAtual + 1;
                 if (qtdParadas > numeroReferencia)
