@@ -42,6 +42,8 @@
     <Compile Include="Frabrics\FabricaCalculadoraDistancia.cs" />
     <Compile Include="Frabrics\FabricaCalculadoraMenoresDistancias.cs" />
     <Compile Include="Frabrics\FabricaCalculadoraQuantidadeRotas.cs" />
+    <Compile Include="Models\Rota.cs" />
+    <Compile Include="Models\Cidade.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

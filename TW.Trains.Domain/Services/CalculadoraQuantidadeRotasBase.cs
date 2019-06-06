@@ -17,10 +17,10 @@ namespace TW.Trains.Domain.Services
         // Mét0do para controlar a chamada do mét0do recursivo e retornar o resultado
         public string CalcularQuantidadeRotas(string cidadeOrigem, string cidadeDestino, double numeroReferencia)
         {
-            if (!Ferrovia.Rotas.ContainsKey(cidadeOrigem))
+            if (!Ferrovia.CidadeExiste(cidadeOrigem))
                 return MensagensUtil.MensagemRotaNaoExiste;
 
-            if (!Ferrovia.Rotas.ContainsKey(cidadeDestino))
+            if (!Ferrovia.CidadeExiste(cidadeDestino))
                 return MensagensUtil.MensagemRotaNaoExiste;
 
             QuantidadeRotas = 0;

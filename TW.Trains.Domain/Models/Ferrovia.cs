@@ -4,23 +4,41 @@ namespace TW.Trains.Domain.Models
 {
     public class Ferrovia
     {
-        public Dictionary<string, Dictionary<string, double>> Rotas { get; private set; }
+        public Dictionary<string, Cidade> Cidades { get; private set; }
 
         public Ferrovia()
         {
-            Rotas = new Dictionary<string, Dictionary<string, double>>();
+            Cidades = new Dictionary<string, Cidade>();
         }
 
         // Adiciona as rotas modeladas em forma de grafo usando hashtable. 
         public void AdicionarRota(string origem, string destino, double distancia)
         {
-            if (!Rotas.ContainsKey(origem))
-                Rotas[origem] = new Dictionary<string, double>();
+            Cidade cidadeOrigem;
+            Cidade cidadeDestino;
 
-            if (!Rotas.ContainsKey(destino))
-                Rotas[destino] = new Dictionary<string, double>();
+            if (Cidades.ContainsKey(origem))
+                cidadeOrigem = Cidades[origem];
+            else
+                cidadeOrigem = new Cidade(origem);
 
-            Rotas[origem][destino] = distancia;
+            if (Cidades.ContainsKey(destino))
+                cidadeDestino = Cidades[destino];
+            else
+                cidadeDestino = new Cidade(destino);
+
+            cidadeOrigem.AdicionarRota(cidadeDestino, distancia);
+            Cidades[origem] = cidadeOrigem;
+        }
+
+        public bool CidadeExiste(string cidade)
+        {
+            return Cidades.ContainsKey(cidade);
+        }
+
+        public Cidade ObterCidade(string cidade)
+        {
+            return Cidades[cidade];
         }
     }
 }
